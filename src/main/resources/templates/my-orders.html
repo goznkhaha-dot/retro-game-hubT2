@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đơn Hàng Của Tôi - Retro Game Hub</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-dark: #0b0f19;
+            --card-bg: #151c2e;
+            --card-inner: #1a233a;
+            --accent-yellow: #ffb703;
+            --accent-orange: #fb8500;
+            --accent-cyan: #00f5d4;
+            --text-main: #ffffff;
+            --text-muted: #cbd5e1;
+            --border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .custom-navbar {
+            background: rgba(11, 15, 25, 0.95);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 0;
+        }
+
+        .brand-logo {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.9rem;
+            color: var(--accent-yellow) !important;
+            text-shadow: 0 0 10px rgba(255, 183, 3, 0.4);
+            text-decoration: none;
+        }
+
+        .btn-home {
+            background: rgba(255, 183, 3, 0.1);
+            color: var(--accent-yellow) !important;
+            border: 1px solid var(--accent-yellow);
+            border-radius: 10px;
+            padding: 8px 18px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+
+        .btn-home:hover {
+            background: var(--accent-yellow);
+            color: #0b0f19 !important;
+            box-shadow: 0 0 15px rgba(255, 183, 3, 0.4);
+        }
+
+        .order-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .info-label {
+            color: var(--accent-cyan);
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .info-value {
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 1.05rem;
+        }
+
+        .badge-status {
+            background: rgba(255, 183, 3, 0.15);
+            color: var(--accent-yellow);
+            border: 1px solid var(--accent-yellow);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .order-table-container {
+            background: var(--card-inner);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .table-custom {
+            width: 100%;
+            margin-bottom: 0;
+            color: #ffffff;
+            border-collapse: collapse;
+        }
+
+        .table-custom th {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text-muted);
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .table-custom td {
+            padding: 16px 18px;
+            vertical-align: middle;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .table-custom tr:last-child td {
+            border-bottom: none;
+        }
+
+        .product-name-text {
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .price-text {
+            color: var(--accent-yellow);
+            font-weight: 700;
+        }
+
+        .total-price-tag {
+            color: var(--accent-yellow);
+            font-size: 1.4rem;
+            font-weight: 800;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <nav class="custom-navbar sticky-top">
+        <div class="container d-flex align-items-center justify-content-between">
+            <a class="brand-logo d-flex align-items-center gap-2" href="/">
+                <i class="fa-solid fa-gamepad text-warning fs-5"></i> RETRO GAME HUB
+            </a>
+            <a href="/" class="btn-home">
+                <i class="fa-solid fa-arrow-left me-1"></i> Trang chủ
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container py-5">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h2 class="fw-bold text-white mb-0 d-flex align-items-center gap-2">
+                <i class="fa-solid fa-receipt text-warning"></i> Đơn Hàng Của Tôi
+            </h2>
+        </div>
+
+        <!-- Thông báo nếu không có đơn hàng -->
+        <div th:if="${orders == null or #lists.isEmpty(orders)}" class="text-center py-5 order-card">
+            <i class="fa-solid fa-box-open fs-1 text-muted mb-3 d-block"></i>
+            <h5 class="text-muted mb-3">Bạn chưa có đơn hàng nào.</h5>
+            <a href="/" class="btn btn-warning fw-bold px-4">Khám phá sản phẩm ngay</a>
+        </div>
+
+        <!-- Danh sách đơn hàng -->
+        <div th:if="${orders != null and not #lists.isEmpty(orders)}">
+            <div class="order-card" th:each="order : ${orders}">
+                
+                <!-- Hàng thông tin đơn hàng -->
+                <div class="row g-3 align-items-center border-bottom border-secondary border-opacity-25 pb-3 mb-3">
+                    <div class="col-6 col-md-3">
+                        <span class="info-label">Mã đơn hàng</span>
+                        <span class="info-value text-warning" th:text="'#ORD-' + ${order.id}">#ORD-1</span>
+                    </div>
+                    <div class="col-6 col-md-5">
+                        <span class="info-label">Thời gian đặt</span>
+                        <span class="info-value" th:text="${order.orderDate}">2026-09-28</span>
+                    </div>
+                    <div class="col-12 col-md-4 text-md-end">
+                        <span class="badge-status">
+                            <i class="fa-solid fa-clock"></i>
+                            <span th:text="${order.status}">ĐANG XỬ LÝ</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Bảng chi tiết sản phẩm -->
+                <div class="order-table-container" th:if="${order.orderDetails != null}">
+                    <table class="table-custom">
+                        <thead>
+                            <tr>
+                                <th>Sản phẩm</th>
+                                <th class="text-center">Đơn giá</th>
+                                <th class="text-center">Số lượng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="detail : ${order.orderDetails}">
+                                <td>
+                                    <span class="product-name-text" th:text="${detail.product != null ? detail.product.name : 'Sản phẩm Retro'}">Tên sản phẩm</span>
+                                </td>
+<td class="text-center price-text" th:text="${detail.priceAtPurchase != null ? detail.priceAtPurchase + ' đ' : '0 đ'}">0 đ</td>                                <td class="text-center fw-bold text-warning" th:text="'x' + ${detail.quantity}">x1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Tổng thanh toán -->
+                <div class="d-flex align-items-center justify-content-end gap-3 mt-3 pt-2">
+                    <span class="info-label fs-6 mb-0">Tổng thanh toán:</span>
+                    <span class="total-price-tag" th:text="${order.totalAmount} + ' đ'">0 đ</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
